@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portfolio de Miguel</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Fonts -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="overlay"></div>
+
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="ecole.html">CFA / École</a></li>
+        <li><a href="entreprise.html">Entreprise</a></li>
+        <li><a href="documentations.html">Documentations techniques</a></li>
+        <li><a href="veille.html">Veille technologique</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+```
+<!-- HERO -->
+<section class="hero">
+  <h1>Bienvenue sur mon portfolio</h1>
+  <p>Apprenti en BTS — Services Informatiques aux Organisations</p>
+  <a href="documentations.html" class="btn">Voir mes documentations</a>
+</section>
+
+<!-- A PROPOS -->
+<section class="about">
+  <h2>À propos de moi</h2>
+
+  <p>
+    Bonjour, je m'appelle Miguel.
+Je suis actuellement en première année de BTS SIO, option SISR, au sein de l’UTEC de Melun.
+  </p>
+
+  <p>
+    En parallèle de ma formation, j’occupe un poste d’alternant technicien support au sein du pôle informatique de la Caisse d’Assurance Maladie, où je développe mes compétences techniques et mon sens du service.
+  </p>
+
+  <p>
+    Précédemment, j’ai préparé un diplôme de niveau 4 au sein du centre de formation FREE COMPETENCES, ce qui m’a permis d’acquérir des bases solides et de mieux appréhender la préparation du BTS SIO, option SISR.
+  </p>
+</section>
+
+<!-- PROJET -->
+<section class="projet-pro">
+  <h2>Projet professionnel</h2>
+
+  <p>
+    Mon objectif est de devenir Administrateur Systèmes et Réseaux. 
+    Je souhaite participer à la construction et au développement de ce projet par le biais de l’alternance 
+    en consolidant les compétences acquises tout au long de mon parcours de formation, ma motivation et ma passion pour l’informatique.
+    <br><br>
+    Je participe donc à la mise en œuvre et à l’exploitation des réseaux informatiques de mon entreprise, 
+    en contribuant au bon fonctionnement des différents organes du réseau, en intervenant sur les incidents, 
+    en dépannant les utilisateurs notamment via un système de ticketing appelé GLPI, 
+    mais aussi en participant à la gestion du parc informatique.
+  </p>
+
+  <p class="cv-text">Vous pouvez retrouver mon CV ci-dessous.</p>
+
+  <div class="buttons">
+    <a href="cv.pdf" class="btn-outline">Mon CV</a>
+    <a href="https://linkedin.com" class="btn-solid">LinkedIn</a>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section class="skills">
+
+  <h2 class="skills-title">
+    Compétences en systèmes d'exploitation
+  </h2>
+
+  <div class="skills-container">
+
+    <div class="skill windows">
+      <div class="percent">90%</div>
+      <span>WINDOWS</span>
+    </div>
+
+    <div class="skill linux">
+      <div class="percent">70%</div>
+      <span>LINUX</span>
+    </div>
+
+    <div class="skill mac">
+      <div class="percent">40%</div>
+      <span>MAC OS X</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- QUALITÉS -->
+<section class="qualities">
+
+  <h2 class="qualities-title">Mes Qualités</h2>
+
+  <div class="qualities-container">
+
+    <div class="quality">
+      <i class="fas fa-bolt"></i>
+      <h3>Réactif</h3>
+      <p>La réactivité permet une résolution rapide des problèmes</p>
+    </div>
+
+    <div class="quality">
+      <i class="fas fa-sun"></i>
+      <h3>Persévérant</h3>
+      <p>La persévérance est récompensée par la satisfaction d’avoir réussi</p>
+    </div>
+
+    <div class="quality">
+      <i class="fas fa-wrench"></i>
+      <h3>Autonome</h3>
+      <p>L'autonomie permet de mettre des solutions en place efficacement</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FIN DE PAGE -->
+<section class="fin-page">
+  <div class="citation">
+    « Tout est possible à qui rêve, ose,
+    travaille et n'abandonne jamais. »
+  </div>
+
+  <img src="images/image.png" alt="illustration motivation">
+</section>
+```
+
+  </main>
+
+  <!-- SCRIPT ANIMATION -->
+
+ <script>
+const section = document.querySelector(".fin-page");
+
+function reveal() {
+  if (!section) return;
+
+  const rect = section.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  if (rect.top < windowHeight * 0.85) {
+    section.classList.add("visible");
+  }
+}
+
+window.addEventListener("scroll", reveal);
+window.addEventListener("load", reveal);
+</script>
+<footer class="footer">
+  <p>© 2026 Tous droits réservés.</p>
+  <p>Miguel Valtre</p>
+</footer>
+</body>
+</html>
