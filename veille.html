@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -7,42 +8,415 @@
     <title>Veille technologique</title>
 
     <link rel="stylesheet" href="css/style.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* ================================================= */
+        /* ========== FLUX D'ACTUALITÉS EN DIRECT ========== */
+        /* ================================================= */
+
+        .live-news-section {
+            margin-top: 120px;
+            padding: 70px 35px;
+            background: rgba(8, 18, 40, 0.55);
+            border: 1px solid rgba(58, 166, 255, 0.18);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 35px rgba(58, 166, 255, 0.08);
+        }
+
+        .live-news-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .live-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3AA6FF;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .live-dot {
+            width: 9px;
+            height: 9px;
+            background: #3AA6FF;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #3AA6FF;
+            animation: livePulse 1.5s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.35;
+                transform: scale(0.75);
+            }
+        }
+
+        .live-news-header h2,
+        .crypto-market-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            color: #ffffff;
+            margin: 10px 0 20px;
+            text-transform: uppercase;
+        }
+
+        .live-news-header p,
+        .crypto-market-header p {
+            max-width: 850px;
+            margin: auto;
+            color: #c8d6ef;
+            font-size: 19px;
+            line-height: 1.8;
+        }
+
+        /* ================= ONGLETS ================= */
+
+        .live-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .live-tab {
+            border: 1px solid rgba(58, 166, 255, 0.25);
+            background: rgba(58, 166, 255, 0.05);
+            color: #d8e4ff;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .live-tab:hover,
+        .live-tab.active {
+            background: rgba(58, 166, 255, 0.15);
+            border-color: #3AA6FF;
+            color: #3AA6FF;
+            box-shadow: 0 0 18px rgba(58, 166, 255, 0.2);
+        }
+
+        /* ================= FIL D'ARTICLES ================= */
+
+        .live-feed {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .live-card {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 390px;
+
+            background: rgba(10, 20, 45, 0.72);
+            border: 1px solid rgba(58, 166, 255, 0.15);
+            border-radius: 15px;
+
+            transition: 0.35s ease;
+        }
+
+        .live-card:hover {
+            transform: translateY(-8px);
+            border-color: #3AA6FF;
+            box-shadow:
+                0 0 20px rgba(58, 166, 255, 0.25),
+                0 0 45px rgba(58, 166, 255, 0.08);
+        }
+
+        .live-card-image {
+            width: 100%;
+            height: 175px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .live-card-content {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .live-card-source {
+            color: #3AA6FF;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .live-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 22px;
+            line-height: 1.35;
+            color: white;
+            margin: 0 0 10px;
+        }
+
+        .live-card-date {
+            color: #829bc1;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .live-card-description {
+            color: #c8d6ef;
+            font-size: 16px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .live-card-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 18px;
+            padding: 11px;
+
+            border: 1px solid rgba(58, 166, 255, 0.35);
+            border-radius: 8px;
+
+            color: white;
+            text-decoration: none;
+
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+        .live-card-link:hover {
+            background: #3AA6FF;
+            box-shadow: 0 0 15px rgba(58, 166, 255, 0.35);
+        }
+
+        .live-loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #9fb5d8;
+            font-size: 20px;
+        }
+
+        /* ================================================= */
+        /* ================ MARCHÉ CRYPTO =================== */
+        /* ================================================= */
+
+        .crypto-market {
+            margin-top: 90px;
+            padding: 70px 35px;
+
+            background: rgba(8, 18, 40, 0.55);
+            border: 1px solid rgba(58, 166, 255, 0.18);
+            border-radius: 20px;
+
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 35px rgba(58, 166, 255, 0.08);
+        }
+
+        .crypto-market-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .crypto-card {
+            padding: 28px;
+
+            background: rgba(10, 20, 45, 0.72);
+            border: 1px solid rgba(58, 166, 255, 0.15);
+            border-radius: 15px;
+
+            transition: 0.3s ease;
+        }
+
+        .crypto-card:hover {
+            transform: translateY(-6px);
+            border-color: #3AA6FF;
+            box-shadow: 0 0 25px rgba(58, 166, 255, 0.2);
+        }
+
+        .crypto-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .crypto-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 19px;
+            color: white;
+        }
+
+        .crypto-symbol {
+            color: #829bc1;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .crypto-icon {
+            font-size: 35px;
+        }
+
+        .crypto-price {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            margin: 22px 0 10px;
+        }
+
+        .crypto-change {
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .crypto-change.positive {
+            color: #55e6a5;
+        }
+
+        .crypto-change.negative {
+            color: #ff6b7a;
+        }
+
+        .crypto-update {
+            text-align: center;
+            margin-top: 30px;
+            color: #8198ba;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+
+            .live-feed {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .crypto-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .live-news-section,
+            .crypto-market {
+                padding: 45px 20px;
+            }
+
+            .live-feed,
+            .crypto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .live-news-header h2,
+            .crypto-market-header h2 {
+                font-size: 27px;
+            }
+
+            .live-tab {
+                width: 100%;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body class="veille-page magazine-veille">
 
+
     <!-- NAVBAR -->
+
     <header class="navbar">
+
         <nav>
+
             <ul>
+
                 <li><a href="index.html">Accueil</a></li>
+
                 <li><a href="ecole.html">CFA / École</a></li>
+
                 <li><a href="entreprise.html">Entreprise</a></li>
+
                 <li><a href="documentations.html">Documentations techniques</a></li>
+
                 <li><a href="veille.html">Veille technologique</a></li>
+
                 <li><a href="contact.html">Contact</a></li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
     <!-- HERO VEILLE -->
+
     <section class="veille-simple-hero">
+
         <div class="veille-simple-hero-inner">
-            <span class="veille-mini-tag">VEILLE TECHNOLOGIQUE</span>
-            <h1>Cryptomonnaies : vers une nouvelle ère monétaire</h1>
+
+            <span class="veille-mini-tag">
+                VEILLE TECHNOLOGIQUE
+            </span>
+
+            <h1>
+                Cryptomonnaies : vers une nouvelle ère monétaire
+            </h1>
+
             <p>
                 Cette veille porte sur l’évolution des cryptomonnaies, de la blockchain
                 et des usages qui en découlent, à travers plusieurs actualités marquantes.
             </p>
+
         </div>
+
     </section>
+
 
     <main class="veille-editoriale">
 
+
         <!-- INTRO -->
+
         <section class="veille-intro-simple">
-            <h2>Veille technologique</h2>
+
+            <h2>
+                Veille technologique
+            </h2>
 
             <p>
                 La veille technologique consiste à se tenir informé des nouvelles technologies et innovations dans son domaine.
@@ -55,97 +429,183 @@
                 Son objectif est d’anticiper les évolutions et d’évaluer leur impact sur les entreprises afin de rester
                 performant et compétitif.
             </p>
+
         </section>
+
 
         <!-- SUJET -->
+
         <section class="veille-intro-simple">
-            <h2>Sujet de veille technologique</h2>
-            <p class="veille-subtitle">Les cryptomonnaies, la monnaie du futur ?</p>
+
+            <h2>
+                Sujet de veille technologique
+            </h2>
+
+            <p class="veille-subtitle">
+                Les cryptomonnaies, la monnaie du futur ?
+            </p>
+
         </section>
 
+
         <!-- BLOCKCHAIN -->
+
         <section class="veille-row">
+
             <div class="veille-row-image">
-                <img src="images/Blockchain1.jpg" alt="Illustration blockchain">
+
+                <img src="images/Blockchain1.jpg"
+                     alt="Illustration blockchain">
+
             </div>
 
+
             <div class="veille-row-text">
-                <h3>Blockchain</h3>
+
+                <h3>
+                    Blockchain
+                </h3>
+
                 <p>
                     C'est un registre, une grande base de données qui a la particularité d’être partagée simultanément
                     avec tous ses utilisateurs, tous également détenteurs de ce registre, et qui ont également tous la
                     capacité d’y inscrire des données.
                 </p>
+
             </div>
+
         </section>
 
+
         <!-- CRYPTOMONNAIE -->
+
         <section class="veille-row reverse">
+
             <div class="veille-row-image">
-                <img src="images/Cryptomonnaie2.jpg" alt="Illustration cryptomonnaie">
+
+                <img src="images/Cryptomonnaie2.jpg"
+                     alt="Illustration cryptomonnaie">
+
             </div>
 
+
             <div class="veille-row-text">
-                <h3>Cryptomonnaie</h3>
+
+                <h3>
+                    Cryptomonnaie
+                </h3>
+
                 <p>
                     Une cryptomonnaie est une monnaie numérique, sans forme physique.
                     Elle s’échange directement entre utilisateurs, de pair à pair, via la blockchain,
                     qui enregistre les transactions de manière continue et sécurisée.
                 </p>
+
             </div>
+
         </section>
+
 
         <!-- ACTUALITES -->
+
         <section class="veille-intro-simple">
-            <h2>Actualités et évolutions du secteur</h2>
+
+            <h2>
+                Actualités et évolutions du secteur
+            </h2>
+
         </section>
 
+
         <!-- TESLA -->
+
         <section class="veille-row">
+
             <div class="veille-row-text">
-                <h3>De plus en plus d’entreprises investissent</h3>
+
+                <h3>
+                    De plus en plus d’entreprises investissent
+                </h3>
+
                 <p>
                     Les annonces d’achat de Bitcoin de la part de grandes entreprises continuent.
                     Tesla a révélé avoir acheté pour 1,5 milliard de dollars de Bitcoin au mois de décembre de l’année 2021,
                     et prévoit d’accepter ce moyen de paiement. Cette annonce est historique et a fait parler d’elle dans le monde entier.
                 </p>
-                <span class="veille-date">Février 2021</span>
+
+                <span class="veille-date">
+                    Février 2021
+                </span>
+
                 <a href="https://cryptoms.fr/actualites/2021/03/02/inblock-2-actualite-blockchain-et-crypto-fevrier-2021.html"
-                   target="_blank" class="btn-doc">
+                   target="_blank"
+                   class="btn-doc">
+
                     Voir l’article
+
                 </a>
+
             </div>
 
+
             <div class="veille-row-image">
-                <img src="images/entrepriseinvest3.jpg" alt="Tesla et Bitcoin">
+
+                <img src="images/entrepriseinvest3.jpg"
+                     alt="Tesla et Bitcoin">
+
             </div>
+
         </section>
 
+
         <!-- NFT -->
+
         <section class="veille-row reverse">
+
             <div class="veille-row-image">
-              <img src="images/nft4.jpg" alt="NFT">
+
+                <img src="images/nft4.jpg"
+                     alt="NFT">
+
             </div>
 
+
             <div class="veille-row-text">
-                <h3>Les NFT</h3>
+
+                <h3>
+                    Les NFT
+                </h3>
+
                 <p>
                     Les NFT sont des objets numériques uniques enregistrés sur la blockchain, souvent utilisés pour vendre
                     des œuvres ou des images en ligne. Très populaires il y a quelques années, ils ont connu une forte spéculation,
                     mais aujourd’hui l’engouement est retombé. Ils existent toujours, mais sont moins médiatisés et utilisés
                     de façon plus réfléchie.
                 </p>
+
                 <a href="https://www.ouest-france.fr/leditiondusoir/2025-07-16/que-deviennent-les-nft-ces-jetons-numeriques-dont-tout-le-monde-parlait-il-y-a-cinq-ans-19cf1930-5619-4a71-9a56-e9edb4d82c7d"
-                   target="_blank" class="btn-doc">
+                   target="_blank"
+                   class="btn-doc">
+
                     Voir l’article
+
                 </a>
+
             </div>
+
         </section>
 
+
         <!-- REGLEMENTATION -->
+
         <section class="veille-row">
+
             <div class="veille-row-text">
-                <h3>La réglementation se durcit</h3>
+
+                <h3>
+                    La réglementation se durcit
+                </h3>
+
                 <p>
                     La réglementation s’est renforcée avec le temps sur les cryptomonnaies, notamment dernièrement
                     aux Pays-Bas avec un projet de loi qui prévoit de taxer les cryptomonnaies comme le Bitcoin à hauteur de 36 %.
@@ -154,112 +614,207 @@
                     comme la France, les États-Unis ou encore l’Allemagne.
                 </p>
 
+
                 <div class="veille-links">
+
                     <a href="https://news.bitcoin.com/fr/la-nouvelle-loi-fiscale-neerlandaise-va-frapper-les-detenteurs-de-bitcoins-et-d-ethereums-avec-une-taxe-de-36-sur-les-gains-sur-papier/"
-                       target="_blank" class="btn-doc">
+                       target="_blank"
+                       class="btn-doc">
+
                         Source 1
+
                     </a>
+
 
                     <a href="https://hellosafe.fr/investissement/crypto/carte-fiscalite-monde"
-                       target="_blank" class="btn-doc">
+                       target="_blank"
+                       class="btn-doc">
+
                         Source 2
+
                     </a>
+
                 </div>
+
             </div>
 
+
             <div class="veille-row-image">
-                <img src="images/cryptopolice5.jpg" alt="Réglementation crypto">
+
+                <img src="images/cryptopolice5.jpg"
+                     alt="Réglementation crypto">
+
             </div>
+
         </section>
 
+
         <!-- TESLA RETOUR -->
+
         <section class="veille-row reverse">
+
             <div class="veille-row-image">
-                <img src="images/tesla6.jpg" alt="Tesla suspend Bitcoin">
+
+                <img src="images/tesla6.jpg"
+                     alt="Tesla suspend Bitcoin">
+
             </div>
 
+
             <div class="veille-row-text">
-                <h3>Un retour en arrière pour Tesla</h3>
+
+                <h3>
+                    Un retour en arrière pour Tesla
+                </h3>
+
                 <p>
                     Comme évoqué précédemment, Tesla a décidé de suspendre les paiements en Bitcoin pour des raisons écologiques.
                     La forte consommation d’électricité du réseau Bitcoin, liée au minage, est la principale raison évoquée.
                     Cette décision fait suite aux critiques de certains actionnaires concernant l’acceptation du Bitcoin
                     et s’inscrit dans une stratégie commerciale axée sur la protection de l’environnement.
                 </p>
+
                 <a href="https://cryptoms.fr/actualites/2021/06/01/inblock-5-actualite-blockchain-et-crypto-mai-2021.html"
-                   target="_blank" class="btn-doc">
+                   target="_blank"
+                   class="btn-doc">
+
                     Voir l’article
+
                 </a>
+
             </div>
+
         </section>
 
+
         <!-- MINAGE -->
+
         <section class="veille-row">
+
             <div class="veille-row-text">
-                <h3>Un milieu toujours actif</h3>
+
+                <h3>
+                    Un milieu toujours actif
+                </h3>
+
                 <p>
                     Le minage consiste à utiliser des ordinateurs puissants pour valider les transactions et sécuriser le réseau
                     en échange d’une récompense en cryptomonnaie. Il est toujours très actif aujourd’hui, surtout pour le Bitcoin,
                     mais il est de plus en plus encadré selon les pays pour des raisons environnementales ou énergétiques.
                     Certaines cryptos comme Ethereum ne fonctionnent plus avec le minage depuis leur passage à un système plus économe en énergie.
                 </p>
+
                 <a href="https://cryptoast.fr/minage-bitcoin-avec-surplus-electricite-france-77-deputes-presentent-projet-loi/?utm_"
-                   target="_blank" class="btn-doc">
+                   target="_blank"
+                   class="btn-doc">
+
                     Voir l’article
+
                 </a>
+
             </div>
 
+
             <div class="veille-row-image">
-                <img src="images/minagebitcoin7.jpg" alt="Minage Bitcoin">
+
+                <img src="images/minagebitcoin7.jpg"
+                     alt="Minage Bitcoin">
+
             </div>
+
         </section>
 
+
         <!-- SATOSHI -->
+
         <section class="veille-row reverse">
+
             <div class="veille-row-image">
-                <img src="images/bitcoinage8.jpg" alt="Satoshi Nakamoto">
+
+                <img src="images/bitcoinage8.jpg"
+                     alt="Satoshi Nakamoto">
+
             </div>
 
+
             <div class="veille-row-text">
-                <h3>Bitcoin, 13 ans déjà</h3>
+
+                <h3>
+                    Bitcoin, 13 ans déjà
+                </h3>
+
                 <p>
                     Le whitepaper du Bitcoin a fêté son 17ᵉ anniversaire.
                     Pour l’occasion, je vous conseille ce blog qui retrace l’histoire de Satoshi Nakamoto.
                 </p>
+
                 <a href="https://www.paymium.com/blog/qui-est-satoshi-nakamoto?utm_"
-                   target="_blank" class="btn-doc">
+                   target="_blank"
+                   class="btn-doc">
+
                     Voir l’article
+
                 </a>
+
             </div>
+
         </section>
 
+
         <!-- NFT JEU VIDEO -->
+
         <section class="veille-row">
+
             <div class="veille-row-text">
-                <h3>Pourquoi les NFT sont-ils devenus un sujet sensible dans le jeu vidéo ?</h3>
+
+                <h3>
+                    Pourquoi les NFT sont-ils devenus un sujet sensible dans le jeu vidéo ?
+                </h3>
+
                 <p>
                     Ces certificats de propriété d’objets virtuels, qui s’achètent et se vendent parfois à prix élevé,
                     rendent-ils vraiment les jeux vidéo meilleurs ? La question divise l’industrie et les joueurs.
                 </p>
+
                 <a href="https://www.lemonde.fr/pixels/article/2021/12/23/pourquoi-les-nft-sont-devenus-un-sujet-sensible-dans-le-jeu-video_6107164_4408996.html"
-                   target="_blank" class="btn-doc">
+                   target="_blank"
+                   class="btn-doc">
+
                     Voir l’article
+
                 </a>
+
             </div>
 
+
             <div class="veille-row-image">
-                <img src="images/NFTVIDEOGAMES9.jpg" alt="NFT jeu vidéo">
+
+                <img src="images/NFTVIDEOGAMES9.jpg"
+                     alt="NFT jeu vidéo">
+
             </div>
+
         </section>
 
+
         <!-- BITCOIN LEGAL -->
+
         <section class="veille-row reverse">
+
             <div class="veille-row-image">
-                <img src="images/BITCOINlegal10.jpg" alt="Bitcoin Salvador">
+
+                <img src="images/BITCOINlegal10.jpg"
+                     alt="Bitcoin Salvador">
+
             </div>
 
+
             <div class="veille-row-text">
-                <h3>Le bitcoin devenu une monnaie légale ?</h3>
+
+                <h3>
+                    Le bitcoin devenu une monnaie légale ?
+                </h3>
+
                 <p>
                     Seuls deux pays ont adopté le Bitcoin comme monnaie légale : El Salvador en 2021,
                     puis la République centrafricaine en 2022. Cela signifie que le Bitcoin peut y être utilisé
@@ -267,26 +822,609 @@
                     pas reconnu comme monnaie officielle.
                 </p>
 
+
                 <div class="veille-links">
+
                     <a href="https://www.reuters.com/world/americas/el-salvador-approves-first-law-bitcoin-legal-tender-2021-06-09/?utm_"
-                       target="_blank" class="btn-doc">
+                       target="_blank"
+                       class="btn-doc">
+
                         Source El Salvador
+
                     </a>
 
+
                     <a href="https://www.africanews.com/2022/04/27/central-african-republic-adopts-bitcoin-as-legal-tender/?utm_"
-                       target="_blank" class="btn-doc">
+                       target="_blank"
+                       class="btn-doc">
+
                         Source RCA
+
                     </a>
+
                 </div>
+
             </div>
+
         </section>
+
+
+        <!-- ================================================= -->
+        <!-- ============ NOUVELLE VEILLE DYNAMIQUE ========== -->
+        <!-- ================================================= -->
+
+        <section class="live-news-section">
+
+            <div class="live-news-header">
+
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    ACTUALITÉS EN DIRECT
+                </div>
+
+                <h2>
+                    Journal technologique
+                </h2>
+
+                <p>
+                    Retrouvez automatiquement les dernières actualités concernant
+                    les cryptomonnaies, la finance et l’informatique.
+                </p>
+
+            </div>
+
+
+            <!-- CATEGORIES -->
+
+            <div class="live-tabs">
+
+                <button class="live-tab active" data-category="crypto">
+                    🪙 Crypto
+                </button>
+
+                <button class="live-tab" data-category="finance">
+                    💻 Finance & Informatique
+                </button>
+
+            </div>
+
+
+            <!-- ARTICLES -->
+
+            <div class="live-feed" id="liveFeed">
+
+                <div class="live-loading">
+                    Chargement des dernières actualités...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- ================ COURS CRYPTO ==================== -->
+        <!-- ================================================= -->
+
+        <section class="crypto-market">
+
+            <div class="crypto-market-header">
+
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    MARCHÉ CRYPTO
+                </div>
+
+                <h2>
+                    Cours des cryptomonnaies
+                </h2>
+
+                <p>
+                    Consultez la valeur actuelle des principales cryptomonnaies
+                    ainsi que leur évolution sur les dernières 24 heures.
+                </p>
+
+            </div>
+
+
+            <div class="crypto-grid" id="cryptoGrid">
+
+                <div class="live-loading">
+                    Chargement des cours...
+                </div>
+
+            </div>
+
+
+            <p class="crypto-update" id="cryptoUpdate">
+                Dernière mise à jour : chargement...
+            </p>
+
+        </section>
+
 
     </main>
 
+
     <!-- FOOTER -->
+
     <footer class="footer">
-        <p>Portfolio BTS SIO - Miguel</p>
+
+        <p>
+            Portfolio BTS SIO - Miguel
+        </p>
+
     </footer>
 
+
+    <!-- ================================================= -->
+    <!-- ================= JAVASCRIPT ==================== -->
+    <!-- ================================================= -->
+
+    <script>
+
+        /* ================================================= */
+        /* ================= ACTUALITES ==================== */
+        /* ================================================= */
+
+        const feeds = {
+
+            crypto:
+                "https://news.google.com/rss/search?q=cryptomonnaie%20Bitcoin%20Ethereum%20blockchain&hl=fr&gl=FR&ceid=FR:fr",
+
+            finance:
+                "https://news.google.com/rss/search?q=finance%20informatique%20technologie%20IA%20fintech&hl=fr&gl=FR&ceid=FR:fr"
+
+        };
+
+
+        let currentCategory = "crypto";
+
+
+        const liveFeed = document.getElementById("liveFeed");
+
+
+        function nettoyerDescription(description) {
+
+            if (!description) {
+                return "Aucune description disponible.";
+            }
+
+            const temp = document.createElement("div");
+
+            temp.innerHTML = description;
+
+            let texte = temp.textContent || temp.innerText || "";
+
+            texte = texte.replace(/\s+/g, " ").trim();
+
+            if (texte.length > 150) {
+                texte = texte.substring(0, 150) + "...";
+            }
+
+            return texte;
+
+        }
+
+
+        function formaterDate(dateString) {
+
+            if (!dateString) {
+                return "";
+            }
+
+            const date = new Date(dateString);
+
+            if (isNaN(date.getTime())) {
+                return "";
+            }
+
+            return date.toLocaleDateString("fr-FR", {
+
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+
+            }) + " à " + date.toLocaleTimeString("fr-FR", {
+
+                hour: "2-digit",
+                minute: "2-digit"
+
+            });
+
+        }
+
+
+        function afficherActualites(articles) {
+
+            if (!articles || articles.length === 0) {
+
+                liveFeed.innerHTML = `
+                    <div class="live-loading">
+                        Aucune actualité disponible pour le moment.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            liveFeed.innerHTML = "";
+
+
+            articles.slice(0, 9).forEach(article => {
+
+                const card = document.createElement("article");
+
+                card.className = "live-card";
+
+
+                const image = article.thumbnail ||
+                              article.enclosure?.link ||
+                              "images/Blockchain1.jpg";
+
+
+                card.innerHTML = `
+
+                    <img
+                        class="live-card-image"
+                        src="${image}"
+                        alt="Illustration de l'actualité"
+                        onerror="this.src='images/Blockchain1.jpg'"
+                    >
+
+                    <div class="live-card-content">
+
+                        <div class="live-card-source">
+                            ${article.author || "Actualités"}
+                        </div>
+
+                        <h3>
+                            ${article.title || "Actualité sans titre"}
+                        </h3>
+
+                        <div class="live-card-date">
+                            ${formaterDate(article.pubDate)}
+                        </div>
+
+                        <p class="live-card-description">
+                            ${nettoyerDescription(article.description)}
+                        </p>
+
+                        <a
+                            href="${article.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="live-card-link"
+                        >
+                            Lire l'article →
+                        </a>
+
+                    </div>
+
+                `;
+
+
+                liveFeed.appendChild(card);
+
+            });
+
+        }
+
+
+        async function chargerActualites(category) {
+
+            currentCategory = category;
+
+
+            liveFeed.innerHTML = `
+
+                <div class="live-loading">
+                    Chargement des dernières actualités...
+                </div>
+
+            `;
+
+
+            try {
+
+                const rssUrl = feeds[category];
+
+                const apiUrl =
+                    "https://api.rss2json.com/v1/api.json?rss_url="
+                    + encodeURIComponent(rssUrl);
+
+
+                const response = await fetch(apiUrl);
+
+
+                if (!response.ok) {
+                    throw new Error("Erreur réseau");
+                }
+
+
+                const data = await response.json();
+
+
+                if (data.status !== "ok") {
+                    throw new Error("Flux indisponible");
+                }
+
+
+                afficherActualites(data.items);
+
+            }
+
+            catch (error) {
+
+                console.error("Erreur actualités :", error);
+
+
+                liveFeed.innerHTML = `
+
+                    <div class="live-loading">
+
+                        Impossible de récupérer les actualités
+                        pour le moment.<br><br>
+
+                        <small>
+                            Le flux sera réessayé automatiquement.
+                        </small>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* ================= ONGLETS ================= */
+
+
+        document.querySelectorAll(".live-tab").forEach(button => {
+
+            button.addEventListener("click", function() {
+
+                document.querySelectorAll(".live-tab").forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+
+                this.classList.add("active");
+
+
+                chargerActualites(this.dataset.category);
+
+            });
+
+        });
+
+
+        /* ================================================= */
+        /* ================= COURS CRYPTO =================== */
+        /* ================================================= */
+
+        const cryptos = {
+
+            bitcoin: {
+                name: "Bitcoin",
+                symbol: "BTC",
+                icon: "₿"
+            },
+
+            ethereum: {
+                name: "Ethereum",
+                symbol: "ETH",
+                icon: "Ξ"
+            },
+
+            solana: {
+                name: "Solana",
+                symbol: "SOL",
+                icon: "◎"
+            },
+
+            binancecoin: {
+                name: "BNB",
+                symbol: "BNB",
+                icon: "◆"
+            }
+
+        };
+
+
+        const cryptoGrid = document.getElementById("cryptoGrid");
+
+        const cryptoUpdate = document.getElementById("cryptoUpdate");
+
+
+        function formaterPrix(prix) {
+
+            return new Intl.NumberFormat("fr-FR", {
+
+                style: "currency",
+                currency: "EUR",
+                maximumFractionDigits: 2
+
+            }).format(prix);
+
+        }
+
+
+        function afficherCryptos(data) {
+
+            cryptoGrid.innerHTML = "";
+
+
+            Object.keys(cryptos).forEach(id => {
+
+                const crypto = cryptos[id];
+
+                const infos = data[id];
+
+
+                if (!infos) {
+                    return;
+                }
+
+
+                const variation = infos.eur_24h_change || 0;
+
+
+                const classeVariation =
+                    variation >= 0
+                        ? "positive"
+                        : "negative";
+
+
+                const signe =
+                    variation >= 0
+                        ? "+"
+                        : "";
+
+
+                const card = document.createElement("div");
+
+                card.className = "crypto-card";
+
+
+                card.innerHTML = `
+
+                    <div class="crypto-card-top">
+
+                        <div>
+
+                            <div class="crypto-name">
+                                ${crypto.name}
+                            </div>
+
+                            <div class="crypto-symbol">
+                                ${crypto.symbol}
+                            </div>
+
+                        </div>
+
+                        <div class="crypto-icon">
+                            ${crypto.icon}
+                        </div>
+
+                    </div>
+
+
+                    <div class="crypto-price">
+                        ${formaterPrix(infos.eur)}
+                    </div>
+
+
+                    <div class="crypto-change ${classeVariation}">
+                        ${signe}${variation.toFixed(2)} % sur 24 h
+                    </div>
+
+                `;
+
+
+                cryptoGrid.appendChild(card);
+
+            });
+
+
+            const maintenant = new Date();
+
+
+            cryptoUpdate.textContent =
+                "Dernière mise à jour : "
+                + maintenant.toLocaleDateString("fr-FR")
+                + " à "
+                + maintenant.toLocaleTimeString("fr-FR");
+
+        }
+
+
+        async function chargerCryptos() {
+
+            try {
+
+                const url =
+                    "https://api.coingecko.com/api/v3/simple/price"
+                    + "?ids=bitcoin,ethereum,solana,binancecoin"
+                    + "&vs_currencies=eur"
+                    + "&include_24hr_change=true";
+
+
+                const response = await fetch(url);
+
+
+                if (!response.ok) {
+                    throw new Error("Erreur API crypto");
+                }
+
+
+                const data = await response.json();
+
+
+                afficherCryptos(data);
+
+            }
+
+            catch (error) {
+
+                console.error("Erreur cours crypto :", error);
+
+
+                cryptoGrid.innerHTML = `
+
+                    <div class="live-loading">
+
+                        Impossible de récupérer les cours
+                        pour le moment.<br><br>
+
+                        <small>
+                            Nouvelle tentative automatique.
+                        </small>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* ================================================= */
+        /* ================= INITIALISATION ================= */
+        /* ================================================= */
+
+
+        chargerActualites("crypto");
+
+        chargerCryptos();
+
+
+        /* Actualités : toutes les 5 minutes */
+
+        setInterval(() => {
+
+            chargerActualites(currentCategory);
+
+        }, 5 * 60 * 1000);
+
+
+        /* Cours crypto : toutes les 2 minutes */
+
+        setInterval(() => {
+
+            chargerCryptos();
+
+        }, 2 * 60 * 1000);
+
+    </script>
+
+
 </body>
+
 </html>
+```
