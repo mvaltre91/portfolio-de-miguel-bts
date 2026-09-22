@@ -2080,3 +2080,344 @@ CONTACT
 }
 
 }
+```css
+/* ================================================= */
+/* ============ FLUX D'ACTUALITÉS ================== */
+/* ================================================= */
+
+.live-news-section {
+    margin-top: 120px;
+    padding: 70px 35px;
+    background: rgba(8, 18, 40, 0.55);
+    border: 1px solid rgba(58, 166, 255, 0.18);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 35px rgba(58, 166, 255, 0.08);
+}
+
+.live-news-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.live-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #3AA6FF;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.live-dot {
+    width: 9px;
+    height: 9px;
+    background: #3AA6FF;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #3AA6FF;
+    animation: livePulse 1.5s infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.35;
+        transform: scale(0.75);
+    }
+}
+
+.live-news-header h2,
+.crypto-market-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    color: #ffffff;
+    margin: 10px 0 20px;
+    text-transform: uppercase;
+}
+
+.live-news-header p,
+.crypto-market-header p {
+    max-width: 850px;
+    margin: auto;
+    color: #c8d6ef;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+
+/* ================================================= */
+/* ================== ONGLETS ====================== */
+/* ================================================= */
+
+.live-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.live-tab {
+    border: 1px solid rgba(58, 166, 255, 0.25);
+    background: rgba(58, 166, 255, 0.05);
+    color: #d8e4ff;
+    padding: 14px 25px;
+    border-radius: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.live-tab:hover,
+.live-tab.active {
+    background: rgba(58, 166, 255, 0.15);
+    border-color: #3AA6FF;
+    color: #3AA6FF;
+    box-shadow: 0 0 18px rgba(58, 166, 255, 0.2);
+}
+
+
+/* ================================================= */
+/* ================= ARTICLES ====================== */
+/* ================================================= */
+
+.live-feed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.live-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 390px;
+    background: rgba(10, 20, 45, 0.72);
+    border: 1px solid rgba(58, 166, 255, 0.15);
+    border-radius: 15px;
+    transition: 0.35s ease;
+}
+
+.live-card:hover {
+    transform: translateY(-8px);
+    border-color: #3AA6FF;
+    box-shadow:
+        0 0 20px rgba(58, 166, 255, 0.25),
+        0 0 45px rgba(58, 166, 255, 0.08);
+}
+
+.live-card-image {
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+    display: block;
+}
+
+.live-card-content {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.live-card-source {
+    color: #3AA6FF;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.live-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
+    line-height: 1.35;
+    color: white;
+    margin: 0 0 10px;
+}
+
+.live-card-date {
+    color: #829bc1;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.live-card-description {
+    color: #c8d6ef;
+    font-size: 16px;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.live-card-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    padding: 11px;
+    border: 1px solid rgba(58, 166, 255, 0.35);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.live-card-link:hover {
+    background: #3AA6FF;
+    box-shadow: 0 0 15px rgba(58, 166, 255, 0.35);
+}
+
+
+/* ================================================= */
+/* ================== CHARGEMENT =================== */
+/* ================================================= */
+
+.live-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #9fb5d8;
+    font-size: 20px;
+}
+
+
+/* ================================================= */
+/* ================ MARCHÉ CRYPTO ================= */
+/* ================================================= */
+
+.crypto-market {
+    margin-top: 90px;
+    padding: 70px 35px;
+    background: rgba(8, 18, 40, 0.55);
+    border: 1px solid rgba(58, 166, 255, 0.18);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 35px rgba(58, 166, 255, 0.08);
+}
+
+.crypto-market-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.crypto-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.crypto-card {
+    padding: 28px;
+    background: rgba(10, 20, 45, 0.72);
+    border: 1px solid rgba(58, 166, 255, 0.15);
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+.crypto-card:hover {
+    transform: translateY(-6px);
+    border-color: #3AA6FF;
+    box-shadow: 0 0 25px rgba(58, 166, 255, 0.2);
+}
+
+.crypto-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.crypto-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 19px;
+    color: white;
+}
+
+.crypto-symbol {
+    color: #829bc1;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.crypto-icon {
+    font-size: 35px;
+}
+
+.crypto-price {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    margin: 22px 0 10px;
+}
+
+.crypto-change {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.crypto-change.positive {
+    color: #55e6a5;
+}
+
+.crypto-change.negative {
+    color: #ff6b7a;
+}
+
+.crypto-update {
+    text-align: center;
+    margin-top: 30px;
+    color: #8198ba;
+    font-size: 14px;
+}
+
+
+/* ================================================= */
+/* ================= RESPONSIVE ==================== */
+/* ================================================= */
+
+@media (max-width: 1100px) {
+
+    .live-feed {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .crypto-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .live-news-section,
+    .crypto-market {
+        padding: 45px 20px;
+    }
+
+    .live-feed,
+    .crypto-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .live-news-header h2,
+    .crypto-market-header h2 {
+        font-size: 27px;
+    }
+
+    .live-tab {
+        width: 100%;
+    }
+
+}
+```
