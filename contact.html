@@ -7,7 +7,9 @@
     <title>Contact</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap"
+        rel="stylesheet">
 </head>
 
 <body class="contact-page">
@@ -27,7 +29,6 @@
     </header>
 
     <!-- HERO -->
-
     <section class="hero-entreprise">
 
         <img src="images/space.gif" alt="Fond spatial">
@@ -45,8 +46,8 @@
             </h1>
 
             <p class="hero-description">
-                Vous souhaitez me contacter pour une question ou simplement échanger ? Remplissez le formulaire
-                ci-dessous.
+                Vous souhaitez me contacter pour une question ou simplement échanger ?
+                Remplissez le formulaire ci-dessous.
             </p>
 
         </div>
@@ -54,43 +55,61 @@
     </section>
 
     <!-- CONTACT -->
-
     <section class="contact-section">
 
         <div class="contact-container">
 
             <!-- FORMULAIRE -->
-
             <div class="contact-form">
 
                 <h2>Formulaire de contact</h2>
 
-                <form>
+                <form id="contactForm">
 
                     <div class="input-group">
 
-                        <input type="text" placeholder="Nom" required>
+                        <input
+                            type="text"
+                            name="nom"
+                            placeholder="Nom"
+                            required>
 
-                        <input type="text" placeholder="Prénom" required>
+                        <input
+                            type="text"
+                            name="prenom"
+                            placeholder="Prénom"
+                            required>
 
                     </div>
 
-                    <input type="email" placeholder="Adresse e-mail" required>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Adresse e-mail"
+                        required>
 
-                    <input type="tel" placeholder="Téléphone">
+                    <input
+                        type="tel"
+                        name="telephone"
+                        placeholder="Téléphone">
 
-                    <textarea rows="7" placeholder="Votre message..." required></textarea>
+                    <textarea
+                        name="message"
+                        rows="7"
+                        placeholder="Votre message..."
+                        required></textarea>
 
-                    <button type="button" class="btn-doc">
+                    <button type="submit" class="btn-doc" id="submitBtn">
                         Envoyer
                     </button>
+
+                    <p id="formMessage"></p>
 
                 </form>
 
             </div>
 
             <!-- IMAGE -->
-
             <div class="contact-image">
 
                 <img src="images/mecontacter.jpg" alt="Contact">
@@ -102,10 +121,96 @@
     </section>
 
     <!-- FOOTER -->
-
     <footer class="footer">
-        <p>Portfolio BTS SIO - Miguel</p>
+
+        <p>
+            Portfolio BTS SIO - Miguel
+        </p>
+
     </footer>
+
+
+    <!-- SCRIPT ENVOI FORMULAIRE -->
+    <script>
+
+        const form = document.getElementById("contactForm");
+        const message = document.getElementById("formMessage");
+        const submitBtn = document.getElementById("submitBtn");
+
+        form.addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Envoi en cours...";
+
+            message.textContent = "";
+            message.style.marginTop = "20px";
+            message.style.fontSize = "18px";
+
+            const formData = new FormData(form);
+
+            const data = {
+                nom: formData.get("nom"),
+                prenom: formData.get("prenom"),
+                email: formData.get("email"),
+                telephone: formData.get("telephone"),
+                message: formData.get("message"),
+                _subject: "Nouveau message depuis mon portfolio",
+                _template: "table",
+                _captcha: "true"
+            };
+
+            try {
+
+                const response = await fetch(
+                    "https://formsubmit.co/ajax/miguelvaltre@outlook.fr",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    }
+                );
+
+                const result = await response.json();
+
+                if (response.ok) {
+
+                    message.textContent = "✅ Votre message a bien été envoyé !";
+                    message.style.color = "#3AA6FF";
+
+                    form.reset();
+
+                } else {
+
+                    message.textContent =
+                        "❌ Une erreur est survenue lors de l'envoi du message.";
+
+                    message.style.color = "red";
+
+                    console.log(result);
+                }
+
+            } catch (error) {
+
+                message.textContent =
+                    "❌ Impossible d'envoyer le message. Vérifiez votre connexion.";
+
+                message.style.color = "red";
+
+                console.error(error);
+
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Envoyer";
+
+        });
+
+    </script>
 
 </body>
 
